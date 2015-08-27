@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HelpDesk" pageWidth="595" pageHeight="842" columnWidth="537" leftMargin="29" rightMargin="29" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon May 16 09:21:57 BRT 2011"/>
+	<parameter name="ID_LAUDO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    L.ID            AS ID,
+    UN.SIGLA        AS UNIDADE,
+    S.NOME          AS SETOR,
+    T.TIPO          AS TIPO,
+    L.MARCA         AS MARCA,
+    L.PATRIMONIO    AS PATRIMONIO,
+    L.SERIE         AS SERIE,
+    P.PRELIMINAR    AS PRELIMINAR,
+    L.CONCLUSIVO    AS CONCLUSIVO,
+    L.OBS           AS OBS,
+    F.NOME          AS FORNECEDOR,
+    L.NUM_LAUD_FORNE AS NUMLAUDOS,
+    L.DT_FORNE      AS DATA_FORNECEDOR,
+    L.DT_LAUDO      AS DATA_LAUDO,
+    US.NOME         AS USUARIO,
+    US.MASP         AS MASP
+FROM
+    LD_LAUDOS L,
+    LD_UNIDADE UN,
+    LD_SETOR S,
+    LD_TIPO T,
+    LD_PRELIMINAR P,
+    LD_FORNECEDOR F,
+    LD_USUARIOS US
+WHERE
+    L.ID_USUARIO    = US.ID   AND
+    L.ID_FORNECEDOR = F.ID    AND
+    L.ID_PRELIMINAR = P.ID    AND
+    L.ID_TIPO       = T.ID    AND
+    L.ID_SETOR      = S.ID    AND
+    L.ID_UNIDADE    = UN.ID   AND
+    L.ID	          = $P{ID_LAUDO}]]>
+	</queryString>
+	<field name="ID" class="java.math.BigDecimal"/>
+	<field name="UNIDADE" class="java.lang.String"/>
+	<field name="SETOR" class="java.lang.String"/>
+	<field name="TIPO" class="java.lang.String"/>
+	<field name="MARCA" class="java.lang.String"/>
+	<field name="PATRIMONIO" class="java.lang.String"/>
+	<field name="SERIE" class="java.lang.String"/>
+	<field name="PRELIMINAR" class="java.lang.String"/>
+	<field name="CONCLUSIVO" class="java.lang.String"/>
+	<field name="OBS" class="java.lang.String"/>
+	<field name="FORNECEDOR" class="java.lang.String"/>
+	<field name="NUMLAUDOS" class="java.lang.String"/>
+	<field name="DATA_FORNECEDOR" class="java.sql.Timestamp"/>
+	<field name="DATA_LAUDO" class="java.sql.Timestamp"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="MASP" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="2" width="269" height="41"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gerência de Tecnologia da Informação e Comunicação ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="2" width="137" height="31"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Fabricio\\HemominasProjetos\\Laudos\\web\\WEB-INF\\Reports\\logoHemominas.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="65" width="537" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laudo Técnico ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="85" width="537" height="1"/>
+			</line>
+			<textField pattern="00000000">
+				<reportElement x="489" y="2" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="2" width="23" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UNIDADE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="414" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="7" width="157" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1) Localização do equipamento ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="27" width="58" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidade: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="47" width="58" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Setor: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="82" y="27" width="455" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UNIDADE}  + " "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="47" width="455" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SETOR}  + " "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="75" width="537" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="80" width="157" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2) Descrição do equipamento ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="100" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="100" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TIPO}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="120" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca e modelo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="120" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MARCA}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="140" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patrimônio: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="140" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PATRIMONIO}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="160" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de série: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="160" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SERIE}  + " "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="186" width="537" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="192" width="157" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3) Diagnóstico ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="212" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preliminar: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="212" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRELIMINAR}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="232" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conclusivo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="232" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CONCLUSIVO}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="252" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obs: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="252" width="422" height="53" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{OBS}  + " "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="312" width="537" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="318" width="157" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4) Dados do laudo do fornecedor ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="338" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fornecedor: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="338" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FORNECEDOR} + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="358" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número do laudo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="358" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NUMLAUDOS}  + " "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="378" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data do laudo: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="115" y="378" width="422" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{DATA_FORNECEDOR}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="406" width="537" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="197">
+			<textField pattern="&apos;Belo Horizonte,&apos; dd &apos;de&apos; MMMM &apos;de&apos; yyyy">
+				<reportElement x="14" y="41" width="388" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{DATA_LAUDO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="60" y="135" width="165" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável pelo laudo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="134" width="165" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="60" y="154" width="165" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="173" width="165" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MASP}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="290" y="134" width="165" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="135" width="165" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chefia imediata]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

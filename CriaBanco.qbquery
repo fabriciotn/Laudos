@@ -1,0 +1,23 @@
+﻿CREATE TABLE LAUDO;
+
+USE LAUDO;
+
+CREATE TABLE laudos(
+  id BIGINT   NOT NULL AUTO_INCREMENT,
+  unidade     VARCHAR(4),
+  setor       VARCHAR(50),
+  tipo        VARCHAR(50),
+  marca       VARCHAR(100),
+  patrimonio  VARCHAR(50),
+  serie       VARCHAR(50),
+  preliminar  VARCHAR(100),
+  conclusivo  TEXT,
+  obs         TEXT,
+  data        DATE,
+  responsavel VARCHAR(50),
+  masp        VARCHAR(20),
+  data_forne  VARCHAR(10),
+  fornecedor  VARCHAR(50),
+  num_laud_forne VARCHAR(50),
+  PRIMARY KEY(id)
+);
